@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>mukesh.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: centere;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="load-test-setup-document">Load Test Setup Document</h1>
+<p><strong>1:- Task requirement:-</strong></p>
+<p>To show the result of response time in grafana with the help of locust tool.</p>
+<p><strong>2:- Load testing:-</strong></p>
+<p>Load Testing is a non-functional software testing process in which the performance of software application is tested under a specific expected load. It determines how the software application behaves while being accessed by multiple users simultaneously.</p>
+<p><strong>3:-Environmental detail:-</strong></p>
+<p>OS: Ubuntu 20.04</p>
+<p>Podman 3.4.2</p>
+<p><strong>4:- System configuration:-</strong></p>
+<p>CPU - 4</p>
+<p>Storage -16 GB</p>
+<p><strong>5:- List of tools and technologies:-</strong></p>
+<p>Grafana
+Postgres
+Locust</p>
+<p><strong>6:-Definition of tools:-</strong></p>
+<p><strong>(a). Grafana</strong> is a multi-platform open source analytics and interactive visualisation web application. It provides charts, graphs, and alerts for the web when connected to supported data sources. It can be easily installed using Docker or Docker Compose.
+PostgreSQL:   Post</p>
+<p><strong>(b). PostgreSQL,</strong> also known as Postgres, is a free and open-source relational database management system emphasising extensibility and SQL compliance.
+Locust:</p>
+<p><strong>(c). Locust</strong> is an open-source load-testing tool. Load testing is a type of software testing that is conducted to check the tolerance/behaviour of the system under a specific expected load.
+Command for the setup or configuration</p>
+<h3 id="installation-podman">Installation Podman</h3>
+<p><strong>Step:- 1</strong></p>
+<p><em>Follow this step</em></p>
+<pre class="hljs"><code><div>sudo apt update
+</div></code></pre>
+<p>The <strong>sudo  apt  update</strong> command is used in Debian-based Linux
+distributions, such as Ubuntu, to update the package repository
+information on your system.</p>
+<p><img src="l1.png" alt="local image"></p>
+<pre class="hljs"><code><div>echo &quot;deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/ /&quot; | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
+</div></code></pre>
+<p><img src="l2.png" alt="local image"></p>
+<pre class="hljs"><code><div>curl -L &quot;https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/Release.key&quot; | sudo apt-key add -
+</div></code></pre>
+<p><img src="l3.png" alt="local image"></p>
+<pre class="hljs"><code><div>sudo apt update
+</div></code></pre>
+<p><img src="l4.png" alt="local image"></p>
+<pre class="hljs"><code><div>sudo apt upgrade
+</div></code></pre>
+<p><img src="l5.png" alt="local image"></p>
+<pre class="hljs"><code><div>sudo apt -y install podman
+</div></code></pre>
+<p><img src="podman.png" alt="local image"></p>
+<p><strong>sudo:</strong> Superuser &quot;do.&quot; It is used to execute a command with administrative or superuser privileges.</p>
+<p><strong>apt:</strong> Advanced Package Tool. It is a package management system used by Debian and Debian-based distributions.</p>
+<p><strong>install:</strong> The command used to install new packages.</p>
+<p><strong>upgrade</strong> This is a command used with apt-get to upgrade installed packages. When you run apt-get upgrade, it downloads and instals the latest versions of all currently installed packages on your system.</p>
+<p><strong>-y</strong> The -y is like saying, &quot;Yes, go ahead!&quot; It tells the magic tool to answer &quot;Yes&quot; to any questions it might ask during the installation, so you don't have to type &quot;Yes&quot; manually.</p>
+<pre class="hljs"><code><div>podman --version
+</div></code></pre>
+<p><img src="version.png" alt="local image"></p>
+<p><strong>Step 2:-</strong></p>
+<pre class="hljs"><code><div>sudo apt install python3-pip
+</div></code></pre>
+<p><img src="python3.png" alt="local image"></p>
+<p><strong>sudo:</strong> Superuser &quot;do.&quot; It is used to execute a command with administrative or superuser privileges.</p>
+<p><strong>apt:</strong> Advanced Package Tool. It is a package management system used by Debian and Debian-based distributions.</p>
+<p><strong>install:</strong> The command used to install new packages.</p>
+<p><strong>python3-pip:</strong> The name of the package you want to install. In this case, it's the Python 3 version of the pip package.</p>
+<p><strong>Step 3:-</strong></p>
+<pre class="hljs"><code><div>pip3 install locust
+</div></code></pre>
+<p><img src="locust.png" alt="local image"></p>
+<p><strong>pip3:</strong> The package installer for Python3</p>
+<p><strong>install:</strong> The command to install a Python package.</p>
+<p><strong>locust:</strong> The name of the package you want to install (in this case, Locust).</p>
+<p><strong>Step 3:-</strong></p>
+<pre class="hljs"><code><div>pip3 install locust_plugins
+</div></code></pre>
+<p><img src="locustplugins.png" alt="local image"></p>
+<p><strong>pip3:</strong> The package installer for Python3</p>
+<p><strong>install:</strong> The command to install a Python package.</p>
+<p><strong>locust_plugins:</strong> The name of the package you want to install (in this case, the Locust plugins package).</p>
+<p><strong>Step 4:-</strong></p>
+<pre class="hljs"><code><div>pip3 show locust
+</div></code></pre>
+<p><img src="./lversion.png" alt="local image"></p>
+<p><strong>pip3:</strong> The package installer for Python 3. It is a command-line tool for installing and managing Python packages.</p>
+<p><strong>show:</strong> A subcommand of pip used to display information about one or more installed packages.</p>
+<p><strong>locust:</strong> The name of the package for which you want to retrieve information. In this case, it's the Locust package</p>
+<p><strong>Step 5:-</strong></p>
+<pre class="hljs"><code><div>sudo mkdir locust
+</div></code></pre>
+<p><img src="mkdir.png" alt="local image"></p>
+<pre class="hljs"><code><div>ls
+</div></code></pre>
+<p><img src="ls.png" alt="local image"></p>
+<pre class="hljs"><code><div>sudo touch locustfile.py
+</div></code></pre>
+<p><img src="pythopy.png" alt="local image"></p>
+<pre class="hljs"><code><div>ls
+</div></code></pre>
+<p><img src="ls.png" alt="local image"></p>
+<p><strong>Step 6:-</strong></p>
+<pre class="hljs"><code><div>hostname -I
+</div></code></pre>
+<p><img src="host.png" alt=""></p>
+<p><strong>Change the IP address , according to your System IP</strong></p>
+<p><strong>Step 7:-</strong></p>
+<pre class="hljs"><code><div>sudo apt install vim
+</div></code></pre>
+<p><img src="vimdownload.png" alt=""></p>
+<p><strong>Step 8:-</strong></p>
+<pre class="hljs"><code><div>sudo vim locustfile.py
+</div></code></pre>
+<p><img src="locustfile.png" alt=""></p>
+<p><strong>Step 9:-</strong></p>
+<pre class="hljs"><code><div>from locust import HttpUser, constant, task, between, TaskSet, SequentialTaskSet, events
+import locust_plugins
+
+@events.test_start.add_listener
+def on_test_start(environment, **kwargs):
+	print(&quot;A new test is starting&quot;)
+
+@events.test_stop.add_listener
+def on_test_stop(environment, **kwargs):
+	print(&quot;A new test is ending&quot;)
+
+class InactiveUsers(SequentialTaskSet):
+	@task
+	def helloworld(self):
+    	with self.client.get(&quot;/hello&quot;, catch_response=True, name=&quot;helloworld&quot;, json={} , headers={&quot;accept&quot;: &quot;application/json&quot;, &quot;Content-Type&quot;: &quot;application/json&quot;}) as response:
+        	if response.status_code != 200:
+            	response.failure(&quot;Failed to get item: StatusCode &quot; + str(response.status_code))
+        	else:
+            	json_response_data = response.json()
+
+class MyInactiveUsers(HttpUser):
+	wait_time = between(1,2)
+	tasks = [InactiveUsers]
+	host = &quot;http://192.168.122.226:8080&quot;
+
+</div></code></pre>
+<p><img src="loc.png" alt=""></p>
+<p><strong>Step 10:-</strong></p>
+<pre class="hljs"><code><div>cd Download/
+</div></code></pre>
+<pre class="hljs"><code><div>ls
+</div></code></pre>
+<pre class="hljs"><code><div>unzip finobank-ptaplus-settlement.zip
+</div></code></pre>
+<p><img src="unzipp.png" alt=""></p>
+<p><strong>Step 11:-</strong></p>
+<pre class="hljs"><code><div>ls
+</div></code></pre>
+<pre class="hljs"><code><div>tar -zxvf loadtestimage.tar.gz
+</div></code></pre>
+<p><img src="unzip.png" alt="">
+<strong>Step 12:-</strong></p>
+<pre class="hljs"><code><div>podman load -i loadtestimage.tar.gz
+</div></code></pre>
+<p><img src="podmanload.png" alt=""></p>
+<p><strong>Step 13:-</strong></p>
+<pre class="hljs"><code><div>podman images
+</div></code></pre>
+<p><img src="podimage.png" alt=""></p>
+<p><strong>Step 14:-</strong></p>
+<pre class="hljs"><code><div>sudo apt update
+</div></code></pre>
+<p><img src="l1.png" alt=""></p>
+<pre class="hljs"><code><div>sudo snap install --classic code
+</div></code></pre>
+<pre class="hljs"><code><div>code .
+</div></code></pre>
+<p><strong>Step 15:-</strong></p>
+<pre class="hljs"><code><div>ls
+</div></code></pre>
+<p><img src="setalment.png" alt=""></p>
+<pre class="hljs"><code><div>cd finobank-ptaplus-settlement/
+</div></code></pre>
+<p><img src="ss.png" alt=""></p>
+<pre class="hljs"><code><div>sudo apt install maven
+</div></code></pre>
+<p><img src="mvninstall.png" alt=""></p>
+<p><strong>Step 16:-</strong></p>
+<pre class="hljs"><code><div>mvn clean compile quarkus:dev -DskipTest
+</div></code></pre>
+<p><img src="mvn.png" alt=""></p>
+<p><strong>Step 17:-</strong> <strong>Change the IP address , according to your System IP</strong></p>
+<pre class="hljs"><code><div>mvn clean compile quarkus:dev -DskipTests -Dquarkus.http.host=192.168.122.82
+</div></code></pre>
+<p><img src="mvnip.png" alt=""></p>
+<p><strong>Step 18:-</strong> <strong>Go to main terminal</strong></p>
+<pre class="hljs"><code><div>cd
+</div></code></pre>
+<pre class="hljs"><code><div>locust -f locustfile.py
+</div></code></pre>
+<p><strong>Step 19:-</strong></p>
+<pre class="hljs"><code><div>podman run -itd --name loadtesting -p 8089:8089 -v &lt;Directory &gt;:/mnt/locust localhost/loadtest:v1 -f /mnt/locust/locustfile.py
+</div></code></pre>
+<p><img src="podrun.png" alt=""></p>
+<p><strong>Step 20:-</strong></p>
+<pre class="hljs"><code><div>podman ps
+</div></code></pre>
+<p><img src="podps.png" alt=""></p>
+<pre class="hljs"><code><div>locust -f locustfile.py
+</div></code></pre>
+<p><strong>locust:</strong> This is the command you use to run the Locust tool. It's like telling your computer to start the &quot;Locust&quot; program.
+<strong>-f</strong> locustfile.py: This part tells the &quot;Locust&quot; program which test plan file to use for the load test. Think of the test plan file as a set of instructions that tell the tool what actions to perform during the load test. The -f stands for &quot;file,&quot; and locustfile.py is the name of your test plan file.</p>
+<p><strong>Step 21:-</strong></p>
+<p>Go to the browser type localhost:8089</p>
+<p><strong>Step 22:-</strong></p>
+<pre class="hljs"><code><div>podman pod create --name timescale --publish 5432:5432 --publish 3000:3000
+</div></code></pre>
+<p><strong>podman</strong> command-line tool is used to manage pods on your system.</p>
+<p><strong>pod</strong> subcommand indicates that you are working with pods, rather than individual containers.</p>
+<p><strong>create</strong> subcommand is used to create a new pod.</p>
+<p><strong>--name timescale</strong> sets the name of the new pod to &quot;timescale&quot;. This is a user-defined label that can be used to refer to the pod in subsequent commands.</p>
+<p><strong>--publish 5432:5432</strong> maps port 5432 on the host system to port 5432 within the pod. This enables external services to communicate with a PostgreSQL database that may be running inside the pod.</p>
+<p><strong>--publish</strong> 3000:3000 maps port 3000 on the host system to port 3000 within the pod. This enables external services to communicate with a Grafana application that may be running inside the pod.</p>
+<pre class="hljs"><code><div>podman pod ps
+</div></code></pre>
+<pre class="hljs"><code><div>cd
+</div></code></pre>
+<pre class="hljs"><code><div>cd Downloads/
+</div></code></pre>
+<pre class="hljs"><code><div>mkdir -p ~/postgres/data/ ~/grafana/data
+</div></code></pre>
+<pre class="hljs"><code><div>vim script.sh
+</div></code></pre>
+<p>Put this script</p>
+<pre class="hljs"><code><div>#!/bin/bash
+
+# Create the first directory
+mkdir -p /home/user/Downloads/postgres/data
+
+# Create the second directory
+mkdir -p /home/user/Downloads/grafana/data
+
+# Create a postgres container, give it the desired environment variables,
+# attach it to the created pod
+podman run -dt \
+     --pod timescale \
+     --name timescale-postgres \
+     -e POSTGRES_PASSWORD=password \
+     -e TIMESCALEDB_TELEMETRY=off \
+     -v /home/user/Downloads/postgres/data:/var/lib/postgresql/data \
+     cyberw/locust-timescale:4
+
+# Create the grafana container, give it the desired environment variables,
+# importantly PGHOST, attach it to the created pod
+podman run -dt \
+     --pod timescale \
+     --name timescale-grafana \
+     -e GF_AUTH_DISABLE_LOGIN_FORM=true \
+     -e GF_AUTH_ANONYMOUS_ENABLED=true \
+     -e GF_AUTH_ANONYMOUS_ORG_ROLE=Admin \
+     -e GF_SECURITY_ALLOW_EMBEDDING=true \
+     -e GF_LOG_LEVEL=warn \
+     -e PGHOST=localhost \
+     -v /home/user/Downloads/grafana/data:/var/lib/grafana \
+     cyberw/locust-grafana:2
+</div></code></pre>
+<pre class="hljs"><code><div>pwd
+</div></code></pre>
+<p>*<strong>Step 25:-</strong></p>
+<pre class="hljs"><code><div>chmod 775 script.sh
+</div></code></pre>
+<p><strong>Step 26:-</strong></p>
+<pre class="hljs"><code><div>bash  script.sh
+</div></code></pre>
+<pre class="hljs"><code><div>Step 27:-
+</div></code></pre>
+<pre class="hljs"><code><div>podman ps
+</div></code></pre>
+<p><strong>podman</strong> command-line tool is used to manage pods on your system.</p>
+<p><strong>ps</strong> subcommand lists the current status of all running pods.</p>
+<p><strong>Step 28:-</strong></p>
+<pre class="hljs"><code><div>cd ~/grafana/
+</div></code></pre>
+<p><strong>Step 29:-</strong></p>
+<pre class="hljs"><code><div>sudo apt install jq
+</div></code></pre>
+<p><strong>Step 31:-</strong></p>
+<pre class="hljs"><code><div>Vim pipeline.sh
+</div></code></pre>
+<pre class="hljs"><code><div>Put this script
+</div></code></pre>
+<pre class="hljs"><code><div>GRAFANA_CRED=&quot;admin:admin&quot;
+GRAFANA_HOST=&quot;http://192.168.1.101:3000&quot;
+GRAFANA_OVERWRITE=false
+DS_NAME=&quot;locust_timescale&quot;
+PGHOST=&quot;postgres&quot;
+PGPORT=&quot;5432&quot;
+
+curl -u &quot;$GRAFANA_CRED&quot; $GRAFANA_HOST/api/datasources -XPOST -H &quot;Accept: application/json&quot; -H &quot;Content-Type: application/json&quot; -d '{&quot;access&quot;: &quot;proxy&quot;,&quot;basicAuth&quot;: false,&quot;basicAuthPassword&quot;: &quot;&quot;,&quot;basicAuthUser&quot;: &quot;&quot;,&quot;database&quot;: &quot;postgres&quot;,&quot;isDefault&quot;: false,&quot;jsonData&quot;: {&quot;postgresVersion&quot;: 1200,&quot;sslmode&quot;: &quot;disable&quot;, &quot;timescaledb&quot;: true},&quot;name&quot;: &quot;'$DS_NAME'&quot;,&quot;orgId&quot;: 1,&quot;password&quot;: &quot;&quot;,&quot;readOnly&quot;: false,&quot;secureJsonData&quot;: {&quot;password&quot;: &quot;password&quot;},&quot;type&quot;: &quot;postgres&quot;,&quot;url&quot;: &quot;'$PGHOST':'$PGPORT'&quot;,&quot;user&quot;: &quot;postgres&quot;,&quot;version&quot;: 3,&quot;withCredentials&quot;: false}'
+
+ds=(10878 14423 14422 15419);
+for d in &quot;${ds[@]}&quot;; do
+  echo -n &quot;Processing $d: &quot;
+  j=$(curl -s -k -u &quot;$GRAFANA_CRED&quot; $GRAFANA_HOST/api/gnet/dashboards/$d | jq .json)
+  echo &quot;{\&quot;dashboard\&quot;:&quot;${j}&quot;,\&quot;overwrite\&quot;:$GRAFANA_OVERWRITE,\&quot;inputs\&quot;:[{\&quot;name\&quot;:\&quot;DS_LOCUST\&quot;,\&quot;type\&quot;:\&quot;datasource\&quot;, \&quot;pluginId\&quot;:\&quot;postgres\&quot;,\&quot;value\&quot;:\&quot;$DS_NAME\&quot;}]}&quot; &gt; payload.json
+  curl -v -k -u &quot;$GRAFANA_CRED&quot; -H &quot;Accept: application/json&quot;\
+	-H &quot;Content-Type: application/json&quot;\
+	-d @payload.json \
+	$GRAFANA_HOST/api/dashboards/import; echo &quot;&quot;
+done
+</div></code></pre>
+<h5 id="check-if-grafana-is-ready-before-proceeding">Check if Grafana is ready before proceeding</h5>
+<p>check_grafana_ready</p>
+<h5 id="create-datasource">Create datasource</h5>
+<p>create_datasource</p>
+<h5 id="import-dashboards">Import dashboards</h5>
+<p>import_dashboards</p>
+<p><strong>Step 32:-</strong></p>
+<pre class="hljs"><code><div>bash pipeline.sh
+</div></code></pre>
+<p><img src="./l2.pngs" alt="Local Image">
+<strong>Step 33:-</strong></p>
+<pre class="hljs"><code><div>cd
+</div></code></pre>
+<pre class="hljs"><code><div>podman exec -it timescale-postgres bash
+</div></code></pre>
+<p><strong>Step 34:-</strong></p>
+<pre class="hljs"><code><div>psql -U postgres
+</div></code></pre>
+<p><strong>Step 35:-</strong></p>
+<pre class="hljs"><code><div>\dt
+</div></code></pre>
+<p><strong>Step 36:-</strong></p>
+<pre class="hljs"><code><div>select * from user_count;
+</div></code></pre>
+<p><strong>Step 37:-</strong></p>
+<pre class="hljs"><code><div>podman run -itd --name loadtesting -p 8089:8089 -v /home/sam:/mnt/locust localhost/loadtest:v1 -f /mnt/locust/locustfile.py --timescale --grafana-url=http://192.168.122.82:3000 --pogport=192.168.122.82 --pgport=5432 --pgpassword=password --pguser=postgres
+</div></code></pre>
+<p><strong>Step 38:-</strong></p>
+<p>Run the load test with grafana and timescale-DB
+Locust ui exposed to the localhost:8089 Start a new test with the number of users and spawn rate.</p>
+<p><strong>Step 39:-</strong>
+You can add panels in grafana to get the graphical view of the responses.</p>
+
+</body>
+</html>
